@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            max-width: 900px;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1.1em;
+        }
+
+        td {
+            font-size: 1em;
+        }
+
+        input[type="number"] {
+            width: 60px;
+            padding: 8px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        input[type="number"]:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
+        }
+
+        #result {
+            font-weight: bold;
+            font-size: 1.5em;
+            text-align: center;
+            margin: 20px auto;
+            padding: 10px;
+            color: #333;
+            max-width: 900px;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        #gradeForm {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Grade and GPA Calculator</h1>
+
+<form id="gradeForm">
+    <table>
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Exam</th>
+                <th>Coefficient</th>
+                <th>Grade (out of 20)</th>
+                <th>Weighted Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Math</td>
+                <td>Midterm</td>
+                <td>1.5</td>
+                <td><input type="number" id="mathMidterm" min="0" max="20"></td>
+                <td id="avgMathMidterm"></td>
+            </tr>
+            <tr>
+                <td>Math</td>
+                <td>Notebooks</td>
+                <td>1</td>
+                <td><input type="number" id="mathNotebooks" min="0" max="20"></td>
+                <td id="avgMathNotebooks"></td>
+            </tr>
+            <tr>
+                <td>Math</td>
+                <td>Final</td>
+                <td>2.5</td>
+                <td><input type="number" id="mathFinal" min="0" max="20"></td>
+                <td id="avgMathFinal"></td>
+            </tr>
+            <tr>
+                <td>French</td>
+                <td>Midterm</td>
+                <td>0.75</td>
+                <td><input type="number" id="frenchMidterm" min="0" max="20"></td>
+                <td id="avgFrenchMidterm"></td>
+            </tr>
+            <tr>
+                <td>French</td>
+                <td>Oral</td>
+                <td>1.125</td>
+                <td><input type="number" id="frenchOral" min="0" max="20"></td>
+                <td id="avgFrenchOral"></td>
+            </tr>
+            <tr>
+                <td>French</td>
+                <td>Final</td>
+                <td>1.125</td>
+                <td><input type="number" id="frenchFinal" min="0" max="20"></td>
+                <td id="avgFrenchFinal"></td>
+            </tr>
+            <tr>
+                <td>Electro</td>
+                <td>Electro 1</td>
+                <td>2</td>
+                <td><input type="number" id="electro1" min="0" max="20"></td>
+                <td id="avgElectro1"></td>
+            </tr>
+            <tr>
+                <td>Electro</td>
+                <td>Electro 2</td>
+                <td>2</td>
+                <td><input type="number" id="electro2" min="0" max="20"></td>
+                <td id="avgElectro2"></td>
+            </tr>
+            <tr>
+                <td>Sedimentology</td>
+                <td>Exam</td>
+                <td>1.4</td>
+                <td><input type="number" id="sedimentology" min="0" max="20"></td>
+                <td id="avgSedimentology"></td>
+            </tr>
+            <tr>
+                <td>Depositional Environments</td>
+                <td>Exam</td>
+                <td>2.8</td>
+                <td><input type="number" id="depositional" min="0" max="20"></td>
+                <td id="avgDepositional"></td>
+            </tr>
+            <tr>
+                <td>Cartography</td>
+                <td>PW</td>
+                <td>1.4</td>
+                <td><input type="number" id="cartographyPW" min="0" max="20"></td>
+                <td id="avgCartographyPW"></td>
+            </tr>
+            <tr>
+                <td>Cartography</td>
+                <td>Exam</td>
+                <td>1.4</td>
+                <td><input type="number" id="cartographyExam" min="0" max="20"></td>
+                <td id="avgCartographyExam"></td>
+            </tr>
+            <tr>
+                <td>Structural Geology</td>
+                <td>Exam</td>
+                <td>2</td>
+                <td><input type="number" id="structuralGeology" min="0" max="20"></td>
+                <td id="avgStructuralGeology"></td>
+            </tr>
+            <tr>
+                <td>Basin Analysis</td>
+                <td>Exam</td>
+                <td>2</td>
+                <td><input type="number" id="basinAnalysis" min="0" max="20"></td>
+                <td id="avgBasinAnalysis"></td>
+            </tr>
+            <tr>
+                <td>Principles of Geochemistry</td>
+                <td>Exam 1</td>
+                <td>1</td>
+                <td><input type="number" id="geochem1" min="0" max="20"></td>
+                <td id="avgGeochem1"></td>
+            </tr>
+            <tr>
+                <td>Principles of Geochemistry</td>
+                <td>Exam 2</td>
+                <td>1</td>
+                <td><input type="number" id="geochem2" min="0" max="20"></td>
+                <td id="avgGeochem2"></td>
+            </tr>
+            <tr>
+                <td>Thermodynamics</td>
+                <td>Thermo 1</td>
+                <td>1.25</td>
+                <td><input type="number" id="thermo1" min="0" max="20"></td>
+                <td id="avgThermo1"></td>
+            </tr>
+            <tr>
+                <td>Thermodynamics</td>
+                <td>Thermo 2</td>
+                <td>1.25</td>
+                <td><input type="number" id="thermo2" min="0" max="20"></td>
+                <td id="avgThermo2"></td>
+            </tr>
+            <tr>
+                <td>Solid Mechanics</td>
+                <td>Exam</td>
+                <td>2.5</td>
+                <td><input type="number" id="solidMechanics" min="0" max="20"></td>
+                <td id="avgSolidMechanics"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button type="button" onclick="calculateGPA()">Calculate GPA</button>
+    <button type="button" onclick="resetGrades()">Reset Grades</button>
+</form>
+
+<p id="result">Final GPA: </p>
+
+<script>
+    // Load grades from localStorage when the page is loaded
+    window.onload = function() {
+        loadGrades();
+    };
+
+    function calculateGPA() {
+        let totalWeighted = 0;
+
+        // Define exams with coefficients
+        const exams = [
+            { id: "mathMidterm", coeff: 1.5, avgId: "avgMathMidterm" },
+            { id: "mathNotebooks", coeff: 1, avgId: "avgMathNotebooks" },
+            { id: "mathFinal", coeff: 2.5, avgId: "avgMathFinal" },
+            { id: "frenchMidterm", coeff: 0.75, avgId: "avgFrenchMidterm" },
+            { id: "frenchOral", coeff: 1.125, avgId: "avgFrenchOral" },
+            { id: "frenchFinal", coeff: 1.125, avgId: "avgFrenchFinal" },
+            { id: "electro1", coeff: 2, avgId: "avgElectro1" },
+            { id: "electro2", coeff: 2, avgId: "avgElectro2" },
+            { id: "sedimentology", coeff: 1.4, avgId: "avgSedimentology" },
+            { id: "depositional", coeff: 2.8, avgId: "avgDepositional" },
+            { id: "cartographyPW", coeff: 1.4, avgId: "avgCartographyPW" },
+            { id: "cartographyExam", coeff: 1.4, avgId: "avgCartographyExam" },
+            { id: "structuralGeology", coeff: 2, avgId: "avgStructuralGeology" },
+            { id: "basinAnalysis", coeff: 2, avgId: "avgBasinAnalysis" },
+            { id: "geochem1", coeff: 1, avgId: "avgGeochem1" },
+            { id: "geochem2", coeff: 1, avgId: "avgGeochem2" },
+            { id: "thermo1", coeff: 1.25, avgId: "avgThermo1" },
+            { id: "thermo2", coeff: 1.25, avgId: "avgThermo2" },
+            { id: "solidMechanics", coeff: 2.5, avgId: "avgSolidMechanics" }
+        ];
+
+        // Calculate weighted grades and sum them up
+        exams.forEach(exam => {
+            const grade = parseFloat(document.getElementById(exam.id).value);
+            if (!isNaN(grade)) {
+                const weighted = (grade * exam.coeff) / 20; // divide by 20 for grade out of 20
+                document.getElementById(exam.avgId).innerText = weighted.toFixed(2);
+                totalWeighted += weighted;
+
+                // Save each grade to localStorage
+                localStorage.setItem(exam.id, grade);
+            } else {
+                document.getElementById(exam.avgId).innerText = '';
+            }
+        });
+
+        // Calculate final GPA by dividing totalWeighted by 1.5
+        const finalGPA = totalWeighted / 1.5;
+        document.getElementById("result").innerText = `Final GPA: ${finalGPA.toFixed(2)}`;
+    }
+
+    // Function to reset all grades and GPA
+    function resetGrades() {
+        const inputs = document.querySelectorAll('input[type="number"]');
+        inputs.forEach(input => {
+            input.value = '';
+            localStorage.removeItem(input.id);  // Remove from localStorage
+        });
+
+        const avgFields = document.querySelectorAll('[id^="avg"]');
+        avgFields.forEach(field => field.innerText = '');
+
+        document.getElementById("result").innerText = 'Final GPA: ';
+    }
+
+    // Load saved grades from localStorage
+    function loadGrades() {
+        const inputs = document.querySelectorAll('input[type="number"]');
+        inputs.forEach(input => {
+            const savedGrade = localStorage.getItem(input.id);
+            if (savedGrade !== null) {
+                input.value = savedGrade;
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
